@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="users"></div>
+    <br>
+    <br>
+    <hr>
+
+   
+    <button onclick="add()">Add New User</button>
+
+    <script>
+       users = [
+           {
+
+               "fullName" : "Oyetunji Atilade",
+               "email" : "atiladeoyetunji@gmail.com",
+               "phone" : "08119592851"
+           },
+           {
+               "fullName" : "john doe",
+               "email" : "johndoes@gmail.com",
+               "phone" : "08119592851"
+           },
+           {
+               "fullName" : "colly max",
+               "email" : "max@gmail.com",
+               "phone" : "0817876583751"
+           }
+       ]
+  
+
+function add() {
+       newUser =
+       {
+               "fullName" : prompt("Enter FullName"),
+               "email" : prompt("Email"),
+               "phone" : prompt("phone number")
+           }
+      
+       users.push(newUser)
+       
+       display()
+    }
+
+
+    function Delete(i) {
+        con = confirm("Are you sure you want to delete " + users[i].fullName +"'s" + " details?")
+		if (con == true) {
+        users.splice(i, 1)
+       
+        display()
+    }
+    }
+
+    function edit(i) {
+        updatedUser={
+            "fullName" : prompt("Enter FullName", users[i].fullName ),
+               "email" : prompt("Email", users[i].email),
+               "phone" : prompt("phone number", users[i].phone)
+        }
+        users[i] = updatedUser
+       
+        display()
+    }
+  
+function display(){
+
+    cont = ''
+    for(i=0; i<users.length; i++)
+    {
+        cont += ` <div id="container">
+            <strong>Full Name</strong> : ${users[i].fullName} <br>
+            <strong>Email</strong> : ${users[i].email} <br>
+            <strong>Contact</strong> : ${users[i].phone} <br>
+            <button onclick="Delete(${i});">Delete User</button>
+             <button onclick="edit(${i});">Edit User</button>
+        </div> `
+    }
+     document.getElementById("users").innerHTML = cont
+}
+
+display()   
+      
+    </script>
+</body>
+</html>
